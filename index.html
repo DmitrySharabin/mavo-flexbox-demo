@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="author" content="Dmitry Sharabin">
+    <meta name="keywords" content="Mavo, Angular, Flex-Layout, CSS, Flexbox">
+    <link rel="stylesheet" href="./app.css">
+    <!-- Roboto font -->
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+    <!-- Mavo -->
+    <link rel="stylesheet" href="https://dev.mavo.io/dist/mavo.css">
+    <title>Flexbox Demo</title>
+</head>
+
+<body>
+    <header>
+        <h1>Flexbox Demo</h1>
+    </header>
+    <main>
+        <section mv-app id="flexbox-parent" mv-storage="none" mv-mode="read">
+            <header>
+                <h2>Properties for the Parent</h2>
+                <h3>Layout children</h3>
+            </header>
+
+            <p>
+                Add children to the parent container and change its properties
+                using the switches below to see the flexbox layout in action.
+            </p>
+
+            <section class="demo-block">
+                <div class="parent" style="flex-direction: [flexDirection];
+                        flex-wrap: [flexWrap];
+                        justify-content: [justifyContent];
+                        align-items: [alignItems];
+                        align-content: [alignContent];">
+                    <div property="flexChild" mv-multiple mv-initial-items="1" class="box box-[($index mod 5) + 1]">1</div>
+                </div>
+                <div class="add-tool">
+                    <!-- Define internal variable -->
+                    <meta property="numOfChildren" mv-value="count(flexChild)">
+                    <h4>Next Child</h4>
+                    <div class="add-tool-block-template">
+                        <div property="block" mv-value="numOfChildren + 1" class="box box-[(numOfChildren mod 5) + 1] template"></div>
+                    </div>
+                    <fieldset>
+                        <legend>Operations with children</legend>
+                        <button mv-action="add(flexChild, block)">Add</button>
+                        <button mv-action="delete(last(flexChild))"
+                                style="visibility: [if(numOfChildren > 0, 'visible', 'hidden')];">
+                            Delete
+                        </button>
+                        <button mv-action="delete(flexChild)"
+                                style="visibility: [if(numOfChildren > 0, 'visible', 'hidden')];">
+                            Delete All
+                        </button>
+                    </fieldset>
+                </div>
+            </section>
+
+            <section class="flex-options">
+                <fieldset class="options">
+                    <meta property="flexDirection" mv-default="row">
+                    <legend>
+                        Layout Direction<br>
+                        <span class="property-name">flex-direction</span>
+                    </legend>
+                    <label>
+                        <input type="radio" name="fd" mv-action="set(flexDirection, 'row')" checked>
+                        row
+                    </label>
+                    <label>
+                        <input type="radio" name="fd" mv-action="set(flexDirection, 'row-reverse')">
+                        row-reverse
+                    </label>
+                    <label>
+                        <input type="radio" name="fd" mv-action="set(flexDirection, 'column')">
+                        column
+                    </label>
+                    <label>
+                        <input type="radio" name="fd" mv-action="set(flexDirection, 'column-reverse')">
+                        column-reverse
+                    </label>
+                </fieldset>
+
+                <fieldset class="options">
+                    <meta property="flexWrap" mv-default="nowrap">
+                    <legend>
+                        Wrap Behavior<br>
+                        <span class="property-name">flex-wrap</span>
+                    </legend>
+                    <label>
+                        <input type="radio" name="wr" mv-action="set(flexWrap, 'nowrap')" checked>
+                        nowrap
+                    </label>
+                    <label>
+                        <input type="radio" name="wr" mv-action="set(flexWrap, 'wrap')">
+                        wrap
+                    </label>
+                    <label>
+                        <input type="radio" name="wr" mv-action="set(flexWrap, 'wrap-reverse')">
+                        wrap-reverse
+                    </label>
+                </fieldset>
+
+                <fieldset class="options">
+                    <meta property="justifyContent" mv-default="center">
+                    <legend>
+                        Alignment in Layout Direction<br>
+                        ([if(flexDirection = "row" or flexDirection = "row-reverse", "horizontal", "vertical")])<br>
+                        <span class="property-name">justify-content</span>
+                    </legend>
+                    <label>
+                        <input type="radio" name="jc" mv-action="set(justifyContent, 'flex-start')">
+                        flex-start
+                    </label>
+                    <label>
+                        <input type="radio" name="jc" mv-action="set(justifyContent, 'flex-end')">
+                        flex-end
+                    </label>
+                    <label>
+                        <input type="radio" name="jc" mv-action="set(justifyContent, 'center')" checked>
+                        center
+                    </label>
+                    <label>
+                        <input type="radio" name="jc" mv-action="set(justifyContent, 'space-between')">
+                        space-between
+                    </label>
+                    <label>
+                        <input type="radio" name="jc" mv-action="set(justifyContent, 'space-around')">
+                        space-around
+                    </label>
+                    <label>
+                        <input type="radio" name="jc" mv-action="set(justifyContent, 'space-evenly')">
+                        space-evenly
+                    </label>
+                </fieldset>
+
+                <fieldset class="options">
+                    <meta property="alignItems" mv-default="center">
+                    <legend>
+                        Alignment in Perpendicular Direction<br>
+                        ([if(flexDirection = "row" or flexDirection = "row-reverse", "vertical", "horizontal")])<br>
+                        <span class="property-name">align-items</span>
+                    </legend>
+                    <label>
+                        <input type="radio" name="ai" mv-action="set(alignItems, 'flex-start')">
+                        flex-start
+                    </label>
+                    <label>
+                        <input type="radio" name="ai" mv-action="set(alignItems, 'flex-end')">
+                        flex-end
+                    </label>
+                    <label>
+                        <input type="radio" name="ai" mv-action="set(alignItems, 'center')" checked>
+                        center
+                    </label>
+                    <label>
+                        <input type="radio" name="ai" mv-action="set(alignItems, 'baseline')">
+                        baseline
+                    </label>
+                    <label>
+                        <input type="radio" name="ai" mv-action="set(alignItems, 'stretch')">
+                        stretch
+                    </label>
+                </fieldset>
+
+                <meta property="isMoreThanOneRow" mv-value="numOfChildren > 6 and (flexDirection = 'row' or flexDirection = 'row-reverse')">
+                <meta property="isMoreThanOneColumn" mv-value="numOfChildren > 3 and (flexDirection = 'column' or flexDirection = 'column-reverse')">
+                <meta property="isMoreThanOneLine" mv-value="(flexWrap = 'wrap' or flexWrap = 'wrap-reverse') and
+                                                            (isMoreThanOneRow or isMoreThanOneColumn)">
+                <fieldset class="options" style="display: [if(isMoreThanOneLine, 'none', 'block')];">
+                    <legend>
+                        Content Alignment<br>
+                        <span class="property-name">align-content</span>
+                    </legend>
+                    <p><em>Property “align-content” has no effect when there is only one line of flex items.</em></p>
+                </fieldset>
+
+                <fieldset class="options" style="visibility: [if(isMoreThanOneLine, 'visible', 'hidden')];">
+                    <meta property="alignContent" mv-default="stretch">
+                    <legend>
+                        Content Alignment<br>
+                        <span class="property-name">align-content</span>
+                    </legend>
+                    <label>
+                        <input type="radio" name="ac" mv-action="set(alignContent, 'flex-start')">
+                        flex-start
+                    </label>
+                    <label>
+                        <input type="radio" name="ac" mv-action="set(alignContent, 'flex-end')">
+                        flex-end
+                    </label>
+                    <label>
+                        <input type="radio" name="ac" mv-action="set(alignContent, 'center')">
+                        center
+                    </label>
+                    <label>
+                        <input type="radio" name="ac" mv-action="set(alignContent, 'space-between')">
+                        space-between
+                    </label>
+                    <label>
+                        <input type="radio" name="ac" mv-action="set(alignContent, 'space-around')">
+                        space-around
+                    </label>
+                    <label>
+                        <input type="radio" name="ac" mv-action="set(alignContent, 'stretch')" checked>
+                        stretch
+                    </label>
+                </fieldset>
+            </section>
+
+            <h4>Generated Code</h4>
+            <code>
+                <p><span class="class-name">.parent<span> {</p>
+                <p class="declarations">
+                    <span class="property-name">display</span>: flex;<br>
+                    <span class="property-name">flex-direction</span>: [flexDirection];<br>
+                    <span class="property-name">flex-wrap</span>: [flexWrap];<br>
+                    <span class="property-name">justify-content</span>: [justifyContent];<br>
+                    <span class="property-name">align-items</span>: [alignItems];<br>
+                    <span style="display: [if(numOfChildren > 6 and (flexWrap = 'wrap' or flexWrap = 'wrap-reverse'), 'inline-block', 'none')];">
+                        <span class="property-name">align-content</span>: [alignContent];
+                    </span>
+                </p>
+                <p>}</p>
+            </code>
+        </section>
+
+        <section mv-app id="flexbox-children" mv-storage="none" mv-mode="read">
+            <header>
+                <h2>Properties for the Children</h2>
+            </header>
+
+            <h3>Flex with Order</h3>
+            <p>
+                Move the slider to explore how the “order” property
+                can change the position of “target” among the elements (in different types of layout).
+            </p>
+            <div class="order-options">
+                <fieldset>
+                    <meta property="flexDirection" mv-default="row">
+                    <legend>
+                        Layout Direction
+                    </legend>
+                    <label>
+                        <input type="radio" name="cfd" mv-action="set(flexDirection, 'row')" checked>
+                        row
+                    </label>
+                    <label>
+                        <input type="radio" name="cfd" mv-action="set(flexDirection, 'column')">
+                        column
+                    </label>
+                </fieldset>
+                <fieldset>
+                    <legend>
+                        Order of “target”
+                    </legend>
+                    <label>
+                        <input type="range" property="targetOrder" value="0" min="-2" max="4" title=[targetOrder]>
+                        <span class="order-label">Value: [targetOrder]</span>
+                    </label>
+                </fieldset>
+            </div>
+            <div class="parent" style="flex-direction: [flexDirection];">
+                <div class="box box-1" style="order: -1;">order: -1</div>
+                <div class="box box-2" style="order: [targetOrder]; min-height: [if(flexDirection = column, 50, 100)]px;">
+                    target
+                </div>
+                <div class="box box-3" style="order: 1;">order: 1</div>
+                <div class="box box-4" style="order: 3; min-height: [if(flexDirection = column, 50, 75)]px;">order: 3</div>
+                <div class="box box-5" style="order: 3;">order: 3</div>
+            </div>
+            <h4>Generated Code</h4>
+            <code>
+                <p><span class="class-name">.target<span> {</p>
+                <p class="declarations">
+                    <span class="property-name">order</span>: [targetOrder];<br>
+                </p>
+                <p>}</p>
+            </code>
+
+            <h3>Flex with Align-Self</h3>
+            <p>
+                Click on “target” to explore how “align-self” can change the alignment for a single element only.
+            </p>
+            <div class="parent child-align">
+                <meta property="state" mv-default="0">
+                <meta property="states" mv-value="group('0': 'auto', '1': 'flex-start', '2': 'flex-end',
+                        '3': 'center', '4': 'baseline', '5': 'stretch')">
+                <div class="box">1</div>
+                <div class="box" property="target" mv-action="set(state, (state + 1) mod 6)"
+                        style="align-self: [get(states, state)];">
+                    target
+                </div>
+                <div class="box">3</div>
+                <div class="box">4</div>
+                <div class="box">5</div>
+            </div>
+            <h4>Generated Code</h4>
+            <code>
+                <p><span class="class-name">.target<span> {</p>
+                <p class="declarations">
+                    <span class="property-name">align-self</span>: [get(states, state)];<br>
+                </p>
+                <p>}</p>
+            </code>
+        </section>
+    </main>
+    <footer>
+        <p>
+            Inspired by <a href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/" target="_blank">CSS-Tricks</a>
+            and <a href="https://tburleson-layouts-demos.firebaseapp.com/#/docs" target="_blank">Angular Flex-Layout
+                Demos</a>.
+        </p>
+        <p>
+            Made with ♥︎ by <a href="https://d12n.me/" target="_blank">Dmitry Sharabin</a>
+            using <a href="https://mavo.io/" target="_blank">Mavo</a>.
+        </p>
+    </footer>
+    <!-- Mavo -->
+    <script src="https://dev.mavo.io/dist/mavo.js"></script>
+</body>
+
+</html>

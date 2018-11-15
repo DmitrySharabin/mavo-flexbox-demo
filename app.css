@@ -1,0 +1,209 @@
+html {
+  padding: 0;
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+
+}
+
+body {
+  margin: 0;
+  box-sizing: border-box;
+  background-color: #eee;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+  font-weight: 300;
+}
+
+header h1,
+footer {
+  margin: 0;
+  padding: 20px;
+  background-color: hsl(232, 50%, 45%);
+  color: white;
+}
+
+footer {
+  text-align: center;
+}
+
+footer a {
+  color: white;
+  font-weight: 500;
+}
+
+/* Properties for the Parent */
+
+#flexbox-parent,
+#flexbox-children {
+  background-color: #fff;
+  box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+  width: 810px;
+  margin: 50px auto;
+  padding: 30px;
+}
+
+.demo-block {
+  display: flex;
+}
+
+.parent {
+  display: flex;
+  border: 1px solid rgba(0, 0, 0, .87);
+  background-color: #eee;
+  height: 250px;
+  width: 500px;
+  margin: 0 10px 0 0;
+  overflow: hidden;
+}
+
+.add-tool {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+  padding: 15px;
+  width: 240px;
+  height: 250px;
+  border: 1px solid rgba(0, 0, 0, .87);
+}
+
+.add-tool h4 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.add-tool-block-template {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 75px;
+  min-height: 50px;
+  box-shadow: 0 2px 5px 0 rgba(52, 47, 51, .63);
+  opacity: .9;
+  color: #fff;
+  border-radius: 3px;
+  cursor: default;
+}
+
+.box-1 {
+  background-color: hsl(174, 100%, 29%);
+}
+
+.box-2 {
+  background-color: hsl(232, 50%, 45%);
+  min-height: 100px;
+}
+
+.box-3 {
+  background-color: hsl(291, 64%, 42%);
+}
+
+.box-4 {
+  background-color: hsl(34, 37%, 51%);
+  min-height: 75px;
+}
+
+.box-5 {
+  background-color: hsl(187, 35%, 53%);
+}
+
+.template {
+  min-width: 75px;
+  min-height: 50px;
+}
+
+.flex-options {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 10px;
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  border: none;
+}
+
+.options legend {
+  margin-bottom: 5px;
+}
+
+.options .property-name {
+  color: hsl(232, 50%, 45%);
+  font-size: 14px;
+  margin-top: 5px;
+  font-style: italic;
+  font-weight: 400;
+}
+
+code {
+  display: block;
+  margin: 10px;
+  padding: 5px 20px;
+  border-left: 3px solid hsl(174, 100%, 29%);
+  background-color: #eee;
+}
+
+code .class-name {
+  font-weight: 700;
+}
+
+code .declarations {
+  margin-left: 30px;
+  line-height: 1.4;
+}
+
+code .property-name {
+  color: hsl(174, 100%, 29%);
+  font-weight: 600;
+}
+
+/* Properties for the Children */
+
+#flexbox-children .order-options {
+  display: grid;
+  grid-template-columns: 160px 250px 1fr;
+  grid-gap: 20px;
+  margin-bottom: 20px;
+}
+
+#flexbox-children .parent {
+  width: 750px;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#flexbox-children .order-label {
+  color: hsl(232, 50%, 45%);
+  font-weight: 500;
+  margin-left: 10px;
+  font-style: italic;
+}
+
+#flexbox-children [property="target"] {
+  min-height: 100px;
+  width: 150px;
+  background-color: hsl(174, 100%, 29%);
+  font-weight: 400;
+  cursor: pointer;
+}
+
+#flexbox-children .child-align .box:not([property="target"]) {
+  background-color: hsl(0, 0%, 16%);
+  width: 130px;
+}
+
+#flexbox-children .child-align .box:not([property="target"]):nth-child(2n) {
+  height: 80px;
+}
