@@ -222,7 +222,7 @@
                     <span class="property-name">flex-wrap</span>: [flexWrap];<br>
                     <span class="property-name">justify-content</span>: [justifyContent];<br>
                     <span class="property-name">align-items</span>: [alignItems];<br>
-                    <span style="display: [if(numOfChildren > 6 and (flexWrap = 'wrap' or flexWrap = 'wrap-reverse'), 'inline-block', 'none')];">
+                    <span style="display: [if(isMoreThanOneLine, 'inline-block', 'none')];">
                         <span class="property-name">align-content</span>: [alignContent];
                     </span>
                 </p>
