@@ -20,7 +20,7 @@
         <h1>Flexbox Demo</h1>
     </header>
     <main>
-        <section mv-app id="flexbox-parent" mv-storage="none" mv-mode="read">
+        <section mv-app id="flexbox-parent" mv-mode="read">
             <header>
                 <h2>Properties for the Parent</h2>
                 <h3>Layout children</h3>
@@ -37,14 +37,14 @@
                         justify-content: [justifyContent];
                         align-items: [alignItems];
                         align-content: [alignContent];">
-                    <div property="flexChild" mv-multiple mv-initial-items="1" class="box box-[($index mod 5) + 1]">1</div>
+                    <div property="flexChild" mv-multiple class="box box-[($index mod 5) + 1]">[$index + 1]</div>
                 </div>
                 <div class="add-tool">
                     <!-- Define internal variable -->
-                    <meta property="numOfChildren" mv-value="count(flexChild)">
+                    <meta property="numOfChildren" content="[count(flexChild)]">
                     <h4>Next Child</h4>
                     <div class="add-tool-block-template">
-                        <div property="block" mv-value="numOfChildren + 1" class="box box-[(numOfChildren mod 5) + 1] template"></div>
+                        <div property="block" class="box box-[(numOfChildren mod 5) + 1] template">[numOfChildren + 1]</div>
                     </div>
                     <fieldset>
                         <legend>Operations with children</legend>
@@ -63,7 +63,7 @@
 
             <section class="flex-options">
                 <fieldset class="options">
-                    <meta property="flexDirection" mv-default="row">
+                    <meta property="flexDirection" content="row">
                     <legend>
                         Layout Direction<br>
                         <span class="property-name">flex-direction</span>
@@ -87,7 +87,7 @@
                 </fieldset>
 
                 <fieldset class="options">
-                    <meta property="flexWrap" mv-default="nowrap">
+                    <meta property="flexWrap" content="nowrap">
                     <legend>
                         Wrap Behavior<br>
                         <span class="property-name">flex-wrap</span>
@@ -107,7 +107,7 @@
                 </fieldset>
 
                 <fieldset class="options">
-                    <meta property="justifyContent" mv-default="center">
+                    <meta property="justifyContent" content="center">
                     <legend>
                         Alignment in Layout Direction<br>
                         ([if(flexDirection = "row" or flexDirection = "row-reverse", "horizontal", "vertical")])<br>
@@ -140,7 +140,7 @@
                 </fieldset>
 
                 <fieldset class="options">
-                    <meta property="alignItems" mv-default="center">
+                    <meta property="alignItems" content="center">
                     <legend>
                         Alignment in Perpendicular Direction<br>
                         ([if(flexDirection = "row" or flexDirection = "row-reverse", "vertical", "horizontal")])<br>
@@ -168,10 +168,10 @@
                     </label>
                 </fieldset>
 
-                <meta property="isMoreThanOneRow" mv-value="numOfChildren > 6 and (flexDirection = 'row' or flexDirection = 'row-reverse')">
-                <meta property="isMoreThanOneColumn" mv-value="numOfChildren > 3 and (flexDirection = 'column' or flexDirection = 'column-reverse')">
-                <meta property="isMoreThanOneLine" mv-value="(flexWrap = 'wrap' or flexWrap = 'wrap-reverse') and
-                                                            (isMoreThanOneRow or isMoreThanOneColumn)">
+                <meta property="isMoreThanOneRow" content="[numOfChildren > 6 and (flexDirection = 'row' or flexDirection = 'row-reverse')]">
+                <meta property="isMoreThanOneColumn" content="[numOfChildren > 3 and (flexDirection = 'column' or flexDirection = 'column-reverse')]">
+                <meta property="isMoreThanOneLine" content="[(flexWrap = 'wrap' or flexWrap = 'wrap-reverse') and
+                                                            (isMoreThanOneRow or isMoreThanOneColumn)]">
                 <fieldset class="options" style="display: [if(isMoreThanOneLine, 'none', 'block')];">
                     <legend>
                         Content Alignment<br>
@@ -181,7 +181,7 @@
                 </fieldset>
 
                 <fieldset class="options" style="visibility: [if(isMoreThanOneLine, 'visible', 'hidden')];">
-                    <meta property="alignContent" mv-default="stretch">
+                    <meta property="alignContent" content="stretch">
                     <legend>
                         Content Alignment<br>
                         <span class="property-name">align-content</span>
@@ -215,7 +215,7 @@
 
             <h4>Generated Code</h4>
             <code>
-                <p><span class="class-name">.parent<span> {</p>
+                <p><span class="class-name">.parent</span> {</p>
                 <p class="declarations">
                     <span class="property-name">display</span>: flex;<br>
                     <span class="property-name">flex-direction</span>: [flexDirection];<br>
@@ -230,7 +230,7 @@
             </code>
         </section>
 
-        <section mv-app id="flexbox-children" mv-storage="none" mv-mode="read">
+        <section mv-app id="flexbox-children" mv-mode="read">
             <header>
                 <h2>Properties for the Children</h2>
             </header>
@@ -242,7 +242,7 @@
             </p>
             <div class="order-options">
                 <fieldset>
-                    <meta property="flexDirection" mv-default="row">
+                    <meta property="flexDirection" content="row">
                     <legend>
                         Layout Direction
                     </legend>
@@ -276,7 +276,7 @@
             </div>
             <h4>Generated Code</h4>
             <code>
-                <p><span class="class-name">.target<span> {</p>
+                <p><span class="class-name">.target</span> {</p>
                 <p class="declarations">
                     <span class="property-name">order</span>: [targetOrder];<br>
                 </p>
@@ -288,9 +288,9 @@
                 Click on “target” to explore how “align-self” can change the alignment for a single element only.
             </p>
             <div class="parent child-align">
-                <meta property="state" mv-default="0">
-                <meta property="states" mv-value="group('0': 'auto', '1': 'flex-start', '2': 'flex-end',
-                        '3': 'center', '4': 'baseline', '5': 'stretch')">
+                <meta property="state" content="0">
+                <meta property="states" content="[group('0': 'auto', '1': 'flex-start', '2': 'flex-end',
+                        '3': 'center', '4': 'baseline', '5': 'stretch')]">
                 <div class="box">1</div>
                 <div class="box" property="target" mv-action="set(state, (state + 1) mod 6)"
                         style="align-self: [get(states, state)];">
@@ -302,7 +302,7 @@
             </div>
             <h4>Generated Code</h4>
             <code>
-                <p><span class="class-name">.target<span> {</p>
+                <p><span class="class-name">.target</span> {</p>
                 <p class="declarations">
                     <span class="property-name">align-self</span>: [get(states, state)];<br>
                 </p>
